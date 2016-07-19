@@ -48,7 +48,7 @@ class MoviePlayer(object):
         self.__mutex.acquire()
 
         filename = item["file"]
-        loop     = item["loop"]
+        loop     = item["loop"] if "loop" in item else False
         args     = ""
 
         try:

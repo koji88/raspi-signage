@@ -8,7 +8,7 @@ import time
 import argparse
 import gpiocontroller as GPIOController
 import playlist as Playlist
-import config as Configure
+import signageconfig as Configure
 from twisted.internet import reactor
 
 
@@ -36,10 +36,9 @@ def main():
     option = conf.getOption()
     command= conf.getCommand()
 
-    with Playlist.Playlist(conf.getPlaylist()) as playlist:
-        if option["autostart"]:
-            playlist.start()
-
+    with Playlist.Playlist(conf.getPlaylist(),option) as playlist:
+        playlist.start()
+        
         gpio = GPIOController.GPIOController(gpiomap.keys() + gpion, pullup = option["pullup"])
 
         def sw_pressed(gpiopin):
@@ -56,7 +55,7 @@ def main():
                 playlist.command(command[num])
                 return
 
-            playlist.nextPlay(num)
+            playlist.play(num)
         
         gpio.allocate(gpiomap.keys(),sw_pressed)
         gpio.allocate(gpion)

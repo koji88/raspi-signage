@@ -13,15 +13,15 @@ gpiomap:
 
 # misc option
 #  option : settings
-#   autorepeat -> True / False
 #   autostart -> True / False
-#   topimage  -> default top image during idle time
+#   autonext  -> True / False
+#   idleimage  -> default top image during idle time
 #   exit      -> when func num is pressed, script will be terminated.
 option:  
   autostart: True
-  autorepeat: False
+  autonext: False
   pullup: False
-  topimage: /mnt/usbdisk/top.jpg
+  idleimage: /mnt/usbdisk/top.jpg
   exit: 7
 
 # command
@@ -37,16 +37,40 @@ command:
 #  func number : file (it must be available on Kodi)
 playlist:
   - func : 4
-    file : /mnt/usbdisk/emu.mp4
+    file : /mnt/usbdisk/test1.mp4
     loop : False
-  - func: 5
+  - func : 5
     file : /mnt/usbdisk/sample.jpg
-    timeout : 5
+    timeout : 10
   - func : 6
-    file : /mnt/usbdisk/penguin.mp4
+    file : /mnt/usbdisk/test2.mp4
     loop : False
   - func : 7
-    file : /mnt/usbdisk/sample2.jpg
-    timeout : 10
+    file : /mnt/usbdisk/test3.mp4
+    loop : False
+  - func : 8
+    file : /mnt/usbdisk/test4.mp4
+    loop : False
+  - func : 9
+    file : /mnt/usbdisk/test5.mp4
+    loop : False
+  - func : 10
+    file : /mnt/usbdisk/test6.mp4
+    loop : False
+  - func : 11
+    file : /mnt/usbdisk/test7.mp4
+    loop : False
+  - func : 12
+    file : /mnt/usbdisk/test8.mp4
+    loop : False
+  - func : 13
+    file : /mnt/usbdisk/test9.mp4
+    loop : False
+  - func : 14
+    file : /mnt/usbdisk/test10.mp4
+    loop : False
+  - func : 15
+    file : /mnt/usbdisk/test11.mp4
+    loop : False
   
     

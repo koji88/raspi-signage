@@ -56,7 +56,7 @@ class ImageViewer(object):
         self.__mutex.acquire()
 
         filename = item["file"]
-        timeout  = item["timeout"]
+        timeout  = item["timeout"] if "timeout" in item else -1
         print(filename)
         
         try:
