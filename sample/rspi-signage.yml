@@ -1,0 +1,52 @@
+# gpio mapping
+#  function : gpio pin number
+#   ntri   -> trigger for getting binary from gpio pins
+#   n      -> binary from gpio pins [high bit,... low bit]
+#   number -> function number
+gpiomap:
+  ntri : 14
+  n : [18, 15]
+  4 : 23
+  5 : 24
+  6 : 25
+  7 : 21
+
+# misc option
+#  option : settings
+#   autorepeat -> True / False
+#   autostart -> True / False
+#   topimage  -> default top image during idle time
+#   exit      -> when func num is pressed, script will be terminated.
+option:  
+  autostart: True
+  autorepeat: False
+  pullup: False
+  topimage: /mnt/usbdisk/top.jpg
+  exit: 7
+
+# command
+#  func number : command name
+#  available commands -> playPause, stop, next, previous, reboot, shutdown
+command:
+  0 : playPause
+  1 : stop
+  2 : next
+  3 : previous
+
+# medias(audio/video) for playlist
+#  func number : file (it must be available on Kodi)
+playlist:
+  - func : 4
+    file : /mnt/usbdisk/emu.mp4
+    loop : False
+  - func: 5
+    file : /mnt/usbdisk/sample.jpg
+    timeout : -1
+  - func : 6
+    file : /mnt/usbdisk/penguin.mp4
+    loop : False
+  - func : 7
+    file : /mnt/usbdisk/sample2.jpg
+    timeout : 10
+  
+    
