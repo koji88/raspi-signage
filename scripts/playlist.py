@@ -3,6 +3,7 @@
 
 from __future__ import print_function
 
+import os
 import mimetypes
 import movieplayer
 import imageviewer
@@ -40,6 +41,8 @@ class Playlist(object):
             "stop" : self.stop,
             "next" : self.playNext,
             "prev" : self.playPrev,
+            "reboot" : self.reboot,
+            "shutdown" : self.shutdown
         }
         pass
 
@@ -179,3 +182,8 @@ class Playlist(object):
         finally:
             self.__mutex.release()
 
+    def reboot(self):
+        os.system("shutdown -r now")
+
+    def shutdown(self):
+        os.system("shutdown -h now")
