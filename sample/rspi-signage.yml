@@ -12,11 +12,17 @@ gpiomap:
   7 : 21
 
 # misc option
-#  option : settings
-#   autostart -> True / False
-#   autonext  -> True / False
-#   idleimage  -> default top image during idle time
-#   exit      -> when func num is pressed, script will be terminated.
+#  option :
+#   autostart : True or False
+#               play file top of playlist automatically
+#   autonext  : True or False
+#               play next file in playlist automatically
+#   idleimage : filename
+#               default top image during idle time
+#   clearimage : filename
+#               clear slideshow by this image
+#   exit      : function number
+#               when func num is pressed, script will be terminated.
 option:  
   autostart: True
   autonext: False
@@ -27,15 +33,20 @@ option:
 
 # command
 #  func number : command name
-#  available commands -> play, stop, next, prev, reboot, shutdown
+#                available commands -> play, stop, next, prev, reboot, shutdown
 command:
   0 : play
   1 : stop
   2 : next
   3 : prev
 
-# medias(audio/video) for playlist
-#  func number : file (it must be available on Kodi)
+# playlist for medias(audio/video/picture)
+#  func : function number
+#  file : filename
+#  loop : True or False
+#         (movie file only) play this movie until stop/next/prev
+#  timeout : seconds or -1
+#         (picture file only) show this image file during this seconds
 playlist:
   - func : 4
     file : /mnt/usbdisk/test1.mp4
