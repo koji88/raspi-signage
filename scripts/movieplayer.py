@@ -76,9 +76,6 @@ class MoviePlayer(object):
         finally:
             self.__mutex.release()
 
-    def clear(self):
-        pass
-
     def isplaying(self):
         self.__mutex.acquire()
         try:

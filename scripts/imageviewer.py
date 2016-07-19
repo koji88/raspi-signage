@@ -11,14 +11,16 @@ class ImageViewer(object):
     __thread     = None
     __mutex      = None
     __stop_event = None
+    __clearimage = None
 
     __CMD_VIEWER= "/usr/bin/fbi"
     __CNF_FB = "/dev/fb0"
     __CNF_ARG = "-noverbose -a -T 2"
     
-    def __init__(self):
+    def __init__(self,clearimage):
         self.__stop_event = threading.Event()
         self.__mutex = threading.Semaphore(1)
+        self.__clearimage = clearimage
         self.__clear()
         pass
 
@@ -29,14 +31,17 @@ class ImageViewer(object):
         self.stop()
         pass
 
-    def __play(self,filename,timeout,callback):
+    def __showimage(self,filename):
         cmd = "{0} -d {1} {2} {3}".format(
             self.__CMD_VIEWER,
             self.__CNF_FB,
             self.__CNF_ARG,
             filename)
-        print(cmd)
         os.system(cmd)
+        
+    
+    def __play(self,filename,timeout,callback):
+        self.__showimage(filename)
 
         if timeout > 0:
             for i in range(timeout):
@@ -48,7 +53,8 @@ class ImageViewer(object):
                 time.sleep(1)
 
         os.system("killall -9 {0}".format(self.__CMD_VIEWER))
-        self.__clear()
+        self.__showimage(self.__clearimage)
+        os.system("killall -9 {0}".format(self.__CMD_VIEWER))
         if callback:
             callback()
 
