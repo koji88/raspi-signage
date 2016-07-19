@@ -37,10 +37,32 @@ def main():
     command= conf.getCommand()
 
     with Playlist.Playlist(conf.getPlaylist()) as playlist:
-        playlist.start()
-        time.sleep(3)
-        playlist.playNext()
+        if option["autostart"]:
+            playlist.start()
+
+        gpio = GPIOController.GPIOController(gpiomap.keys() + gpion, pullup = option["pullup"])
+
+        def sw_pressed(gpiopin):
+            num = gpiomap[gpiopin]
+            if num == "ntri":
+                num = gpio.getBinary(gpion)
+            
+            myprint("gpio {0} is pressed: funcnum {1}".format(gpiopin,num))
+            if option["exit"] == num:
+                reactor.stop()
+                return
+
+            if num in command:
+                playlist.command(command[num])
+                return
+
+            playlist.nextPlay(num)
+        
+        gpio.allocate(gpiomap.keys(),sw_pressed)
+        gpio.allocate(gpion)
+    
         reactor.run()
+
     
 
 if __name__ == "__main__":

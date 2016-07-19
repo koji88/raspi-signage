@@ -20,17 +20,30 @@ class Playlist(object):
     __mutex      = None
     __stop_event = None
     __next_event = None
+
+    __command    = None
     
     def __init__(self,playlist):
         self.__playlist = playlist 
         self.__playmap  = { v["func"]:i for (i,v) in enumerate(playlist)}
         self.__mplayer = movieplayer.MoviePlayer()
         self.__iplayer = imageviewer.ImageViewer()
-        self.__nowindex = -1
+        self.__nowindex = 0
         self.__stop_event = threading.Event()
         self.__next_event = threading.Event()
         self.__mutex = threading.Semaphore(1)
+
+        self.__command = {
+            "play" : self.start,
+            "stop" : self.stop,
+            "next" : self.playNext,
+            "prev" : self.playPrev,
+        }
         pass
+
+    def command(self,command):
+        if command in self.__command:
+            self.__command[command]()
 
     def __enter__(self):
         return self
@@ -45,6 +58,19 @@ class Playlist(object):
             index = 0
         return index
 
+    def __getPrevIndex(self,index):
+        index -= 1
+        if index < 0:
+            index = len(self.__playlist) - 1
+        return index
+    
+    def playPrev(self):
+        self.__mutex.acquire()
+        i = self.__getPrevIndex(self.__nowindex)
+        self.__queindex = i
+        self.__next_event.set()
+        self.__mutex.release()
+    
     def playNext(self, funcnum = -1):
         self.__mutex.acquire()
         i = self.__playmap[funcnum] if funcnum in self.__playmap else self.__getNextIndex(self.__nowindex)
@@ -106,4 +132,4 @@ class Playlist(object):
                 return False
         finally:
             self.__mutex.release()
-        
+

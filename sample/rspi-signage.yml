@@ -26,12 +26,12 @@ option:
 
 # command
 #  func number : command name
-#  available commands -> playPause, stop, next, previous, reboot, shutdown
+#  available commands -> play, stop, next, prev, reboot, shutdown
 command:
-  0 : playPause
+  0 : play
   1 : stop
   2 : next
-  3 : previous
+  3 : prev
 
 # medias(audio/video) for playlist
 #  func number : file (it must be available on Kodi)
@@ -41,7 +41,7 @@ playlist:
     loop : False
   - func: 5
     file : /mnt/usbdisk/sample.jpg
-    timeout : -1
+    timeout : 5
   - func : 6
     file : /mnt/usbdisk/penguin.mp4
     loop : False
