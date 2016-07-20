@@ -15,6 +15,7 @@ from twisted.internet import reactor
 isQuiet = False
 
 def myprint(f):
+    global isQuiet
     if not isQuiet:
         print(f)
 
@@ -28,6 +29,7 @@ def main():
         print("configuration file is not supplied")
         return
 
+    global isQuiet
     isQuiet = args.quiet
 
     conf = Configure.Configure(args.conf)
