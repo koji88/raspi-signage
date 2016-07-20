@@ -24,6 +24,7 @@ if [ -e "$MOUNTPOINT/$UPDATEFILE" ]; then
     git pull
     python setup.py install
     rm "$MOUNTPOINT/$UPDATEFILE"
+    shutdown -r now
     exit 0
 fi
 
