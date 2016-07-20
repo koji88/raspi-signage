@@ -27,7 +27,7 @@ option:
   autostart: True
   autonext: False
   pullup: False
-  idleimage: /mnt/usbdisk/top.jpg
+  idlefile: /mnt/usbdisk/top.jpg
   clearimage: /mnt/usbdisk/black.png
   exit: 7
 

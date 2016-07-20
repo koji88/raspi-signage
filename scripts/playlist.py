@@ -99,10 +99,34 @@ class Playlist(object):
         self.__mutex.release()
 
         self.start()
+
+    def __idleplayer(self):
+        idlefile = self.__option["idlefile"] if "idlefile" in self.__option else None
+        if not idlefile:
+            return None,None
+        
+        mimetype,subtype = mimetypes.guess_type(idlefile)
+        player = self.__iplayer if "image" in mimetype else self.__mplayer
+        playfile = dict()
+        playfile["file"] = idlefile
+
+        if "image" in mimetype:
+            playfile["timeout"] = -1
+        else:
+            playfile["loop"] = True
+
+        def idleplay():
+            player.play(playfile)
+
+        def idlestop():
+            player.stop()
+
+        return idleplay,idlestop
+        
         
     def __play(self):
         autostart = self.__getOption("autostart")
-        idleimage = self.__option["idleimage"] if "idleimage" in self.__option else None
+        idleplay,idlestop = self.__idleplayer()
         self.__mplayer.stop()
         self.__iplayer.stop()
         
@@ -111,15 +135,15 @@ class Playlist(object):
             if not autostart and self.__queindex < 0:
                 self.__next_event.clear()
                 if not self.__getOption("autonext"):
-                    if idleimage:
-                        self.__iplayer.play({"file":idleimage,"timeout":-1})
+                    if idleplay:
+                        idleplay()
                     
                     while not self.__next_event.wait(1):
                         if self.__stop_event.is_set():
                             return
 
-                    if idleimage:
-                        self.__iplayer.stop()
+                    if idlestop:
+                        idlestop()
                         
             autostart = False
             
@@ -173,9 +197,9 @@ class Playlist(object):
                 self.__thread.join()
                 self.__thread = None
                 if showidleimage:
-                    idleimage = self.__option["idleimage"] if "idleimage" in self.__option else None
-                    if idleimage:
-                        self.__iplayer.play({"file":idleimage,"timeout":-1})
+                    idleplay,idlestop = self.__idleplayer()
+                    if idleplay:
+                        idleplay()
                 return True
             else:
                 return False
