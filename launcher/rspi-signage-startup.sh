@@ -23,6 +23,7 @@ if [ -e "$MOUNTPOINT/$UPDATEFILE" ]; then
     cd $INSTALLPATH
     git pull
     python setup.py install
+    rm "$MOUNTPOINT/$UPDATEFILE"
     exit 0
 fi
 
