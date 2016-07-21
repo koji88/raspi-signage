@@ -41,7 +41,7 @@ def main():
     with Playlist.Playlist(conf.getPlaylist(),option) as playlist:
         playlist.start()
         
-        gpio = GPIOController.GPIOController(gpiomap.keys() + gpion, pullup = option.get("pullup",False), bouncetime = option.get("bouncetime",100))
+        gpio = GPIOController.GPIOController(gpiomap.keys() + gpion, pullup = option.get("pullup",False), bouncetime = option.get("bouncetime",20))
 
         def sw_pressed(gpiopin):
             num = gpiomap[gpiopin]

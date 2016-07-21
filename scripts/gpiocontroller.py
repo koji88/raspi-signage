@@ -10,7 +10,7 @@ class GPIOController:
     __bouncetime = 0.1
     __bouncemap = {}
     
-    def __init__(self, gpiopins, pullup = False, bouncetime = 100):
+    def __init__(self, gpiopins, pullup = False, bouncetime = 20):
         Controller.available_pins = gpiopins
         self.__pullup = pullup
         self.__bouncetime = bouncetime*0.001
