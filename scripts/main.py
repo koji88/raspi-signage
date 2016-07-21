@@ -41,7 +41,7 @@ def main():
     with Playlist.Playlist(conf.getPlaylist(),option) as playlist:
         playlist.start()
         
-        gpio = GPIOController.GPIOController(gpiomap.keys() + gpion, pullup = option["pullup"])
+        gpio = GPIOController.GPIOController(gpiomap.keys() + gpion, pullup = option.get("pullup",False), bouncetime = option.get("bouncetime",100))
 
         def sw_pressed(gpiopin):
             num = gpiomap[gpiopin]
@@ -49,7 +49,7 @@ def main():
                 num = gpio.getBinary(gpion)
             
             myprint("gpio {0} is pressed: funcnum {1}".format(gpiopin,num))
-            if option["exit"] == num:
+            if option.get("exit",-1) == num:
                 reactor.stop()
                 return
 

@@ -31,7 +31,5 @@ class Configure:
         return d
 
     def getGPION(self):
-        if "n" in self.__data["gpiomap"]:
-            return self.__data["gpiomap"]["n"]
-        return []
+        return self.__data["gpiomap"].get("n",[])
     

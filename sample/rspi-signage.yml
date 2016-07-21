@@ -17,8 +17,10 @@ gpiomap:
 #               play file top of playlist automatically
 #   autonext  : True or False
 #               play next file in playlist automatically
-#   idleimage : filename
+#   idlefile : filename
 #               default top image during idle time
+#   pullup : True or False
+#   bouncetime : ms
 #   clearimage : filename
 #               clear slideshow by this image
 #   exit      : function number
@@ -27,6 +29,7 @@ option:
   autostart: True
   autonext: False
   pullup: False
+  bouncetime: 100
   idlefile: /mnt/usbdisk/top.jpg
   clearimage: /mnt/usbdisk/black.png
   exit: 7
