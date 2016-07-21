@@ -25,7 +25,7 @@ class GPIOController:
         
         for pin in gpiopins:
             Controller.alloc_pin(pin, INPUT, inputChanged if pressed_callback else None, BOTH)
-            __bouncemap[pin] = time.time()
+            self.__bouncemap[pin] = time.time()
             
     def getState(self,number):
         state = Controller.get_pin_state(number)
