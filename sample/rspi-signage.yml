@@ -25,6 +25,8 @@ gpiomap:
 #               clear slideshow by this image
 #   exit      : function number
 #               when func num is pressed, script will be terminated.
+#   remote    : remote controll server
+#   port      : port for remote controll server
 option:  
   autostart: True
   autonext: False
@@ -33,6 +35,8 @@ option:
   idlefile: /mnt/usbdisk/top.jpg
   clearimage: /mnt/usbdisk/black.png
   exit: 7
+  remote: True
+  port: 8888
 
 # command
 #  func number : command name
