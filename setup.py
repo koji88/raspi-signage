@@ -9,8 +9,8 @@ setup(name='rspi-signage',
       packages=find_packages(),
       entry_points="""
       [console_scripts]
-      rspi-signage = scripts.main:main
-      rspi-signage-remote = scripts.remote:main
+      rspi-signage = rspi_signage.main:main
+      rspi-signage-remote = rspi_signage.remote:main
       """,
       install_requires=[
           'sysfs-gpio',

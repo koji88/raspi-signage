@@ -22,6 +22,7 @@ if [ -e "$MOUNTPOINT/$UPDATEFILE" ]; then
     echo "Update rspi-signage scripts"
     cd $INSTALLPATH
     git pull
+    rm -rf /usr/local/lib/python2.7/dist-packages/rspi_signage-*
     python setup.py install
     rm "$MOUNTPOINT/$UPDATEFILE"
     shutdown -r now
