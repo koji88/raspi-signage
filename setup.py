@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 
 setup(name='rspi-signage',
-      version='0.0.4',
+      version='0.0.5',
       description='Digital Signage by Raspberry PI',
       author='Koji Hachiya',
       author_email='koji.hachiya@gmail.com',
@@ -10,9 +10,11 @@ setup(name='rspi-signage',
       entry_points="""
       [console_scripts]
       rspi-signage = scripts.main:main
+      rspi-signage-remote = scripts.remote:main
       """,
       install_requires=[
           'sysfs-gpio',
-          'pexpect'
+          'pexpect',
+          'requests'
       ],
 )
