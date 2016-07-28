@@ -62,8 +62,19 @@ def main():
             
             myprint("gpio {0} is pressed: funcnum {1}".format(gpiopin,num))
             do_num(num)
+
+        def sw_released(gpiopin):
+            num = gpiomap[gpiopin]
+            if num == "ntri":
+                num = gpio.getBinary(gpion)
+            else:
+                return
+            
+            myprint("gpio {0} is released: funcnum {1}".format(gpiopin,num))
+            do_num(num)
+            
         
-        gpio.allocate(gpiomap.keys(),sw_pressed)
+        gpio.allocate(gpiomap.keys(),sw_pressed, sw_released if option.get("ntritoggle",False) else None)
         gpio.allocate(gpion)
 
         remote = RemoteController.RemoteController(port = option.get("port",9999)) if option.get("remote",False) else None

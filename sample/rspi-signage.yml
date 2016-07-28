@@ -32,6 +32,7 @@ option:
   autonext: False
   pullup: False
   bouncetime: 20
+  ntritoggle: False
   idlefile: /mnt/usbdisk/top.jpg
   clearimage: /mnt/usbdisk/black.png
   exit: 7

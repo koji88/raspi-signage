@@ -15,16 +15,22 @@ class GPIOController:
         self.__pullup = pullup
         self.__bouncetime = bouncetime*0.001
 
-    def allocate(self, gpiopins, pressed_callback = None):
+    def allocate(self, gpiopins, pressed_callback = None, released_callback = None):
         ison = 1 if not self.__pullup else 0
         def inputChanged(number,state):
             dt = time.time()
             if state == ison and dt > self.__bouncemap[number] + self.__bouncetime:
                 self.__bouncemap[number] = dt
-                pressed_callback(number)
+                if pressed_callback:
+                    pressed_callback(number)
+            elif state != ison and dt > self.__bouncemap[number] + self.__bouncetime:
+                self.__bouncemap[number] = dt
+                if released_callback:
+                    released_callback(number)
+                
         
         for pin in gpiopins:
-            Controller.alloc_pin(pin, INPUT, inputChanged if pressed_callback else None, BOTH)
+            Controller.alloc_pin(pin, INPUT, inputChanged if pressed_callback or released_callback else None, BOTH)
             self.__bouncemap[pin] = time.time()
             
     def getState(self,number):

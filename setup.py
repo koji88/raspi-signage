@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 
 setup(name='rspi-signage',
-      version='0.0.5',
+      version='0.0.6',
       description='Digital Signage by Raspberry PI',
       author='Koji Hachiya',
       author_email='koji.hachiya@gmail.com',
