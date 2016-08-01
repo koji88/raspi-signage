@@ -1,4 +1,4 @@
-# rspi-signage
+# raspi-signage
 
 Digital signage by raspberry pi.
 
@@ -21,10 +21,10 @@ $ sudo python setup.py install
 
 ## Edit configuration file
 
-Create yaml file based on [rspi-signage.yml](sample/rspi-signage.yml).
+Create yaml file based on [raspi-signage.yml](sample/raspi-signage.yml).
 
 # Launch
 
 ~~~
-$ sudo rspi-signage -c sample/rspi-signage.yml
+$ sudo raspi-signage -c sample/raspi-signage.yml
 ~~~

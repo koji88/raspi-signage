@@ -1,10 +1,10 @@
 #!/bin/bash
 
-INSTALLPATH=/usr/src/rspi-signage
+INSTALLPATH=/usr/src/raspi-signage
 MOUNTPOINT=/mnt/usbdisk
 USBMEMORY=/dev/disk/by-path/platform-3f980000.usb-usb-0:1.5:1.0-scsi-0:0:0:0-part1
-CONFIGFILE=rspi-signage.yml
-UPDATEFILE=rspi-signage-update.txt
+CONFIGFILE=raspi-signage.yml
+UPDATEFILE=raspi-signage-update.txt
 
 if [ ! -d $MOUNTPOINT ]; then
     mkdir $MOUNTPOINT
@@ -19,17 +19,17 @@ else
 fi
 
 if [ -e "$MOUNTPOINT/$UPDATEFILE" ]; then
-    echo "Update rspi-signage scripts"
+    echo "Update raspi-signage scripts"
     cd $INSTALLPATH
     git pull
-    rm -rf /usr/local/lib/python2.7/dist-packages/rspi_signage-*
+    rm -rf /usr/local/lib/python2.7/dist-packages/raspi_signage-*
     python setup.py install
     rm "$MOUNTPOINT/$UPDATEFILE"
     shutdown -r now
     exit 0
 fi
 
-echo "Launch rspi-signage"
-rspi-signage -c $MOUNTPOINT/$CONFIGFILE
+echo "Launch raspi-signage"
+raspi-signage -c $MOUNTPOINT/$CONFIGFILE
 
 exit 0
