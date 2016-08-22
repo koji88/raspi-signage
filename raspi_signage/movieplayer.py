@@ -10,14 +10,16 @@ class MoviePlayer(object):
     __thread     = None
     __mutex      = None
     __stop_event = None
+    __audio_out  = None
 
     __CMD_PLAYER= '/usr/bin/omxplayer'
     __CMD_PAUSE = 'p'
     __CMD_QUIT  = 'q'
     
-    def __init__(self):
+    def __init__(self,audio_out):
         self.__stop_event = threading.Event()
         self.__mutex = threading.Semaphore(1)
+        self.__audio_out = audio_out
         pass
 
     def __enter__(self):
@@ -28,9 +30,10 @@ class MoviePlayer(object):
         pass
 
     def __play(self, filename, loop, args,callback):
-        cmd = "{0} {1} {2} {3} --no-osd".format(self.__CMD_PLAYER,filename
-                                       ,"--loop" if loop else ""
-                                       ,args)
+        cmd = "{0} {1} {2} {3} {4} --no-osd".format(self.__CMD_PLAYER,filename
+                                                    ,"--loop" if loop else ""
+                                                    ,"-o {0}".format(self.__audio_out) if self.__audio_out else ""
+                                                    ,args)
         print(cmd)
         p = pexpect.spawn(cmd)
 

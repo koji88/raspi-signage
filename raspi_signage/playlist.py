@@ -29,7 +29,7 @@ class Playlist(object):
         self.__playlist = playlist 
         self.__playmap  = { v["func"]:i for (i,v) in enumerate(playlist)}
         self.__option   = option
-        self.__mplayer = movieplayer.MoviePlayer()
+        self.__mplayer = movieplayer.MoviePlayer(option["audio"])
         self.__iplayer = imageviewer.ImageViewer(option["clearimage"])
         self.__nextindex = 0
         self.__stop_event = threading.Event()

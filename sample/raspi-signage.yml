@@ -27,6 +27,7 @@ gpiomap:
 #               when func num is pressed, script will be terminated.
 #   remote    : remote controll server
 #   port      : port for remote controll server
+#   audio     : hdmi / local / both
 option:  
   autostart: True
   autonext: False
@@ -38,6 +39,7 @@ option:
   exit: 7
   remote: True
   port: 8888
+  audio: both
 
 # command
 #  func number : command name
