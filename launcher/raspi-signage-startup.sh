@@ -30,6 +30,8 @@ if [ -e "$MOUNTPOINT/$UPDATEFILE" ]; then
 fi
 
 echo "Launch raspi-signage"
-raspi-signage -c $MOUNTPOINT/$CONFIGFILE
+setterm -blank 0 -cursor off
+clear
+raspi-signage -c $MOUNTPOINT/$CONFIGFILE >/dev/null 2>&1
 
 exit 0
