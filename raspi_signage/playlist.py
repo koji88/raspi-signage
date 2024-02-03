@@ -1,12 +1,12 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from __future__ import print_function
+
 
 import os
 import mimetypes
-import movieplayer
-import imageviewer
+from . import movieplayer
+from . import imageviewer
 import threading
 
 class Playlist(object):

@@ -1,19 +1,19 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from __future__ import print_function
+
 import sys
 import json
-import SimpleHTTPServer
-import SocketServer
+import http.server
+import socketserver
 import threading
 
-class JsonCallbackHandler(SimpleHTTPServer.SimpleHTTPRequestHandler):
+class JsonCallbackHandler(http.server.SimpleHTTPRequestHandler):
     __callback = None
     
     def __init__(self, callback,  *args):
         self.__callback = callback
-        SimpleHTTPServer.SimpleHTTPRequestHandler.__init__(self, *args)
+        http.server.SimpleHTTPRequestHandler.__init__(self, *args)
 
     def do_POST(self):
         content_len = int(self.headers.get("content-length"))
@@ -55,7 +55,7 @@ class RemoteController(object):
         def handler(*args):
             JsonCallbackHandler(callback, *args)
 
-        server = SocketServer.TCPServer(('', self.__port), handler)
+        server = socketserver.TCPServer(('', self.__port), handler)
         server.timeout = timeout
 
         while not self.__stop_event.is_set():
