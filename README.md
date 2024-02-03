@@ -15,7 +15,7 @@ Raspberry PI2 and raspbian.
 ## Install scripts
 
 ~~~
-$ sudo apt-get install python python-yaml omxplayer fbi
+$ sudo ./setup.sh
 $ sudo python setup.py install
 ~~~
 

@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 
 setup(name='raspi-signage',
-      version='0.0.7',
+      version='0.0.8',
       description='Digital Signage by Raspberry PI',
       author='Koji Hachiya',
       author_email='koji.hachiya@gmail.com',
@@ -14,7 +14,10 @@ setup(name='raspi-signage',
       """,
       install_requires=[
           'sysfs-gpio',
+          'pyyaml<6.0',
           'pexpect',
-          'requests'
+          'requests<2.28',
+          'twisted',
+          'zope.interface<=3.6.0'
       ],
 )
