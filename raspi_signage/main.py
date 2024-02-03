@@ -1,15 +1,15 @@
 #!/usr/bin/env python
 # -*- coding:utf-8
 
-
+from __future__ import print_function
 
 import sys
 import time
 import argparse
-from . import gpiocontroller as GPIOController
-from . import remotecontroller as RemoteController
-from . import playlist as Playlist
-from . import signageconfig as Configure
+import gpiocontroller as GPIOController
+import remotecontroller as RemoteController
+import playlist as Playlist
+import signageconfig as Configure
 from twisted.internet import reactor
 
 
@@ -42,7 +42,7 @@ def main():
     with Playlist.Playlist(conf.getPlaylist(),option) as playlist:
         playlist.start()
         
-        gpio = GPIOController.GPIOController(list(gpiomap.keys()) + gpion, pullup = option.get("pullup",False), bouncetime = option.get("bouncetime",20))
+        gpio = GPIOController.GPIOController(gpiomap.keys() + gpion, pullup = option.get("pullup",False), bouncetime = option.get("bouncetime",20))
 
         def do_num(num):
             if option.get("exit",-1) == num:
@@ -74,7 +74,7 @@ def main():
             do_num(num)
             
         
-        gpio.allocate(list(gpiomap.keys()),sw_pressed, sw_released if option.get("ntritoggle",False) else None)
+        gpio.allocate(gpiomap.keys(),sw_pressed, sw_released if option.get("ntritoggle",False) else None)
         gpio.allocate(gpion)
 
         remote = RemoteController.RemoteController(port = option.get("port",9999)) if option.get("remote",False) else None
