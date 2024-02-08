@@ -14,10 +14,7 @@ setup(name='raspi-signage',
       """,
       install_requires=[
           'sysfs-gpio',
-          'pyyaml<6.0',
           'pexpect',
-          'requests<2.28',
-          'twisted',
-          'zope.interface<=3.6.0'
+          'requests'
       ],
 )

@@ -5,6 +5,7 @@ Digital signage by raspberry pi.
 # Target
 
 Raspberry PI and simulated system.
+Support buster only.
 
 # Installation and setup
 
@@ -16,7 +17,6 @@ Raspberry PI2 and raspbian.
 
 ~~~
 $ sudo ./setup.sh
-$ sudo python setup.py install
 ~~~
 
 ## Edit configuration file
