@@ -2,7 +2,7 @@
 
 INSTALLPATH=/usr/src/raspi-signage
 MOUNTPOINT=/mnt/usbdisk
-USBMEMORY=/dev/disk/by-path/platform-3f980000.usb-usb-0:1.5:1.0-scsi-0:0:0:0-part1
+USBMEMORY=/dev/sda1
 CONFIGFILE=raspi-signage.yml
 UPDATEFILE=raspi-signage-update.txt
 
