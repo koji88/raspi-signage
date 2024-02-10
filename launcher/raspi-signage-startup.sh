@@ -1,6 +1,6 @@
 #!/bin/bash
 
-INSTALLPATH=/usr/src/raspi-signage
+INSTALLPATH=/usr/local/src/raspi-signage
 MOUNTPOINT=/mnt/usbdisk
 USBMEMORY=/dev/sda1
 CONFIGFILE=raspi-signage.yml
